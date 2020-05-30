@@ -26,7 +26,7 @@ class LivreApplicationTests {
 	@Autowired
 	private LivreController livreController;
 
-	@org.junit.Test
+	@Test
 	public void testFindByIsbn() {
 		Livre cree = new Livre("livre1","auteur1", "titre1", "editeur1", "edition1");
 		livreController.create(cree);
@@ -39,7 +39,63 @@ class LivreApplicationTests {
 
 	}
 
-	/*@org.junit.Test
+	@Test
+	public void testFindByAuteur() {
+		Livre cree = new Livre("livre1","auteur1", "titre1", "editeur1", "edition1");
+		livreController.create(cree);
+		Livre cree2 = new Livre("livre2","auteur2", "titre2", "editeur2", "edition2");
+		livreController.create(cree2);
+
+
+		List<Livre> livre = livreController.findBy("auteur1",null,null,null).getBody().getContent().stream().collect(Collectors.toList());
+		assertEquals(cree, livre.get(0));
+
+		//assertThat(books).extracting(com.ProjetServicesWeb.Livre.Livre::getName).containsOnly("C++");
+	}
+
+	@Test
+	public void testFindByTitre() {
+		Livre cree = new Livre("livre1","auteur1", "titre1", "editeur1", "edition1");
+		livreController.create(cree);
+		Livre cree2 = new Livre("livre2","auteur2", "titre2", "editeur2", "edition2");
+		livreController.create(cree2);
+
+
+		List<Livre> livre = livreController.findBy(null,"titre1",null,null).getBody().getContent().stream().collect(Collectors.toList());
+		assertEquals(cree, livre.get(0));
+
+		//assertThat(books).extracting(com.ProjetServicesWeb.Livre.Livre::getName).containsOnly("C++");
+	}
+
+	@Test
+	public void testFindByEditeur() {
+		Livre cree = new Livre("livre1","auteur1", "titre1", "editeur1", "edition1");
+		livreController.create(cree);
+		Livre cree2 = new Livre("livre2","auteur2", "titre2", "editeur2", "edition2");
+		livreController.create(cree2);
+
+
+		List<Livre> livre = livreController.findBy(null,null,"editeur1",null).getBody().getContent().stream().collect(Collectors.toList());
+		assertEquals(cree, livre.get(0));
+
+		//assertThat(books).extracting(com.ProjetServicesWeb.Livre.Livre::getName).containsOnly("C++");
+	}
+
+	@Test
+	public void testFindByEdition() {
+		Livre cree = new Livre("livre1","auteur1", "titre1", "editeur1", "edition1");
+		livreController.create(cree);
+		Livre cree2 = new Livre("livre2","auteur2", "titre2", "editeur2", "edition2");
+		livreController.create(cree2);
+
+
+		List<Livre> livre = livreController.findBy(null,null,null,"edition1").getBody().getContent().stream().collect(Collectors.toList());
+		assertEquals(cree, livre.get(0));
+
+		//assertThat(books).extracting(com.ProjetServicesWeb.Livre.Livre::getName).containsOnly("C++");
+	}
+
+	@Test
 	public void testFindAll() {
 		Livre cree = new Livre("livre1","auteur1", "titre1", "editeur1", "edition1");
 		livreController.create(cree);
@@ -48,14 +104,14 @@ class LivreApplicationTests {
 		Livre cree3 = new Livre("livre3","auteur3", "titre3", "editeur3", "edition3");
 		livreController.create(cree3);
 
-		List<Livre> livre = livreController.getAll().getBody().getContent().stream().collect(Collectors.toList());
+		List<Livre> livre = livreController.findBy(null,null,null,null).getBody().getContent().stream().collect(Collectors.toList());
 		assertTrue(livre.contains(cree) && livre.contains(cree2) && livre.contains(cree3));
 
 		//assertThat(books).extracting(com.ProjetServicesWeb.Livre.Livre::getName).containsOnly("C++");
 
 	}
 
-	@org.junit.Test
+	@Test
 	public void testModify() {
 		Livre cree = new Livre("livre1","auteur1", "titre1", "editeur1", "edition1");
 		livreController.create(cree);
@@ -68,7 +124,7 @@ class LivreApplicationTests {
 
 	}
 
-	@org.junit.Test
+	@Test
 	public void testDelete() {
 		Livre cree = new Livre("livre1","auteur1", "titre1", "editeur1", "edition1");
 		livreController.create(cree);
@@ -78,5 +134,5 @@ class LivreApplicationTests {
 
 		//assertThat(books).extracting(com.ProjetServicesWeb.Livre.Livre::getName).containsOnly("C++");
 
-	}*/
+	}
 }

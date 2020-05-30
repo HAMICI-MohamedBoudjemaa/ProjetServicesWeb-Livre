@@ -23,6 +23,26 @@ public class LivreServiceProviderImpl implements LivreServiceProvider{
     }
 
     @Override
+    public List<Livre> findByAuteur(String auteur) {
+        return livreRepository.findByAuteur(auteur);
+    }
+
+    @Override
+    public List<Livre> findByTitre(String titre) {
+        return livreRepository.findByTitre(titre);
+    }
+
+    @Override
+    public List<Livre> findByEditeur(String editeur) {
+        return livreRepository.findByEditeur(editeur);
+    }
+
+    @Override
+    public List<Livre> findByEdition(String edition) {
+        return livreRepository.findByEdition(edition);
+    }
+
+    @Override
     public List<Livre> getAll() {
         return livreRepository.findAll();
     }
