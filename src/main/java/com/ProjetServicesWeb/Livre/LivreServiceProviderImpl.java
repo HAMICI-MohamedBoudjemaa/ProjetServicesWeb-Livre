@@ -53,7 +53,7 @@ public class LivreServiceProviderImpl implements LivreServiceProvider{
         {
             return livreRepository.save(livre);
         }
-        return null;
+        return new Livre();
     }
 
     @Override
