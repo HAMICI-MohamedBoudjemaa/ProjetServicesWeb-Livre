@@ -35,6 +35,10 @@ class LivreApplicationTests {
 		Livre livre = entityLivre.getBody().getContent();
 		assertEquals(cree, livre);
 
+		ResponseEntity<EntityModel<Livre>> entityLivre2 = livreController.findByIsbn("livre125");
+		Livre livre2 = entityLivre2.getBody().getContent();
+		assertEquals(null, livre2.getIsbn());
+
 		//assertThat(books).extracting(com.ProjetServicesWeb.Livre.Livre::getName).containsOnly("C++");
 
 	}
